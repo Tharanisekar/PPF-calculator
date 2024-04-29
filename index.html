@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPF Calculator</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: rgba(0, 128, 68, 0.397);
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #007bff;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-control {
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      border-radius: 20px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .result {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PPF Calculator</h1>
+    <div class="form-group">
+      <label for="investment">Investment Amount (₹)</label>
+      <input type="number" class="form-control" id="investment" placeholder="Enter investment amount">
+    </div>
+    <div class="form-group">
+      <label for="interest">Annual Interest Rate (%)</label>
+      <input type="number" class="form-control" id="interest" placeholder="Enter annual interest rate">
+    </div>
+    <div class="form-group">
+      <label for="years">Investment Period (Years)</label>
+      <input type="number" class="form-control" id="years" placeholder="Enter investment period in years">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="calculate()">Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <!-- Bootstrap JavaScript (optional) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script>
+    function calculate() {
+      var investment = parseFloat(document.getElementById('investment').value);
+      var interest = parseFloat(document.getElementById('interest').value);
+      var years = parseInt(document.getElementById('years').value);
+
+      var totalAmount = investment * Math.pow(1 + interest / 100, years);
+      var interestEarned = totalAmount - investment;
+
+      document.getElementById('result').innerHTML = "Total amount after " + years + " years: ₹" + totalAmount.toFixed(2) + "<br>Interest earned: ₹" + interestEarned.toFixed(2);
+    }
+  </script>
+</body>
+</html>
